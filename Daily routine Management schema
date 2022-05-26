@@ -1,0 +1,83 @@
+**Daily routine management app**
+
+Objective -> To make a daily routine management app that contains a todo list that can keep track of all our daily tasks
+
+There will be a one super Admin,admins and users
+
+Super admin -> 
+- A super admin can manage multiple admins and users
+- A super admin can add or remove admins and users according to him
+
+
+Admin->
+
+-An admin can manage all the users
+
+- An admin can remove or add users according to him
+
+
+Users->
+-Users will be able to make todo lists in our app and can keep track of their daily routine
+
+Functionality->
+
+-Here we will provide our user a todo list with following functionality
+
+* A user can make a
+
+* A user can add n number of task in that todo list
+
+* A user can remove that task from that list when done
+
+
+Databast schema->
+
+Here in this our application we will be having 4 tables
+
+1.)todoLists
+2.)steps
+3.)status
+4.)Tasks
+
+todolists->
+
+In this table todolists we will be having 3 columns
+
+1.)id(primary key)
+2.)name
+3.)description
+
+steps->
+
+In this table we will be having four columns
+1.)id
+2.)name
+3.)description
+4.)todolistId(foreign key)
+Here todolistId will work as a foreign key which is a primary key in todolist
+
+status->
+
+
+In this table we will be having only 1 column
+
+1.)status
+
+there we will be 2 possible values in status that is "archieve" and "current"
+
+This will be showing that status of our task in todo list
+
+tasks
+
+In this table we will be having five columns
+
+1.)id(primary key)
+2.)name
+3.)description
+4.)todoList_id(foreign key)
+5.)orderInTodoListId(foreign key)
+
+
+
+
+
