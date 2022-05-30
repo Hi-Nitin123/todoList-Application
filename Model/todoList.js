@@ -1,9 +1,7 @@
-const dB = require("../Model/db");
-
 const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = new Sequelize("postgres::memory:");
+const sequelize = require("./db");
 
-const todoList = sequelize.define(
+const todoLists = sequelize.define(
   "todoLists",
   {
     id: {
@@ -23,17 +21,25 @@ const todoList = sequelize.define(
     order: {
       type: DataTypes.INTEGER,
       allowNull: false,
-
-      unique: true,
     },
     createdAt: {
-      type: Date,
+      type: DataTypes.DATE,
       allowNull: false,
     },
-    deletedAt: { type: Date },
+    deletedAt: { type: DataTypes.DATE },
   },
   {}
 );
-todoList.sync({ alter: true });
+(async () => {
+  await sequelize
+    .sync({ alter: true })
+    .then(() => {
+      console.log("Database Created");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  // Code here
+})();
 
-module.exports = { todoList };
+module.exports = todoLists
