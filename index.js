@@ -6,8 +6,8 @@ var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-require("./routes/todoApp")(app);
-require("./routes/stepsRoute")(app);
+// require("./routes/todoApp")(app);
+// require("./routes/stepsRoute")(app);
 require("./routes/signUpRoute")(app);
 
 app.listen(8000, function () {

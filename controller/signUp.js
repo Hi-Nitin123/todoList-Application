@@ -1,10 +1,12 @@
-const todoListUsers = require("../Model/signUpModel");
+const User = require("../Model/signUpModel");
+
+console.log(User);
 
 const joi = require("joi");
 
 const bcrypt = require("bcrypt");
 
-const userRegister = async (request, response) => {
+exports.userRegister = async (request, response) => {
   const password = request.body.pswd;
   const confirmPassword = request.body.password;
 
@@ -14,6 +16,7 @@ const userRegister = async (request, response) => {
     email: request.body.email,
     password: request.body.password,
     confirmPassword: request.body.confirmPassword,
+    role: request.body.role,
   };
 
   const schema = joi.object({
@@ -31,19 +34,19 @@ const userRegister = async (request, response) => {
     const result = await schema.validateAsync(usr);
   } catch (err) {
     response.send(err.details[0].message);
+    const db = require("../Model/signUpModel");
+    const User = db.User;
   }
-  const exist = await todoListUsers.findOne({
+  const exist = await User.findOne({
     where: { email: request.body.email },
   });
   if (exist === null) {
     (usr.password = await bcrypt.hash(password, 10)),
       (usr.confirmPassword = await bcrypt.hash(confirmPassword, 10)),
-      (created_user = await todoListUsers.create(usr));
+      (created_user = await User.create(usr));
 
     response.status(201).json(created_user);
   } else {
     response.send("This user already exists");
   }
 };
-
-module.exports = userRegister;
