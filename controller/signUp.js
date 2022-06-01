@@ -16,6 +16,7 @@ const userRegister = async (request, response) => {
     email: request.body.email,
     password: request.body.password,
     confirmPassword: request.body.confirmPassword,
+    role: request.body.role,
   };
 
   const schema = joi.object({
@@ -28,6 +29,7 @@ const userRegister = async (request, response) => {
     password: joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
 
     confirmPassword: joi.ref("password"),
+    role: joi.string(),
   });
   try {
     const result = await schema.validateAsync(usr);

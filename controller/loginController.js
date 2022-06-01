@@ -15,7 +15,7 @@ exports.loginUser = async (req, res) => {
       foundUser.password
     );
     if (password_valid) {
-      token = jwt.sign(
+      const token = jwt.sign(
         {
           email: foundUser.email,
         },
