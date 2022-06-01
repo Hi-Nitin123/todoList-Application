@@ -1,15 +1,9 @@
-const { Sequelize } = require("sequelize");
+const { sequelize, DataTypes } = require("./db");
 
-module.exports = (sequelize) => {
-  const User = await sequelize.define(
-    "User",
-    {
-      firstName: {
-        type: Sequelize.STRING,
-      },
-      lastName: {
-        type: Sequelize.STRING,
-      },
+const joi = require("joi");
+const User = sequelize.define("User", {
+  firstName: { allowNull: false, type: DataTypes.STRING },
+  lastName: { allowNull: false, type: DataTypes.STRING },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -18,15 +12,13 @@ module.exports = (sequelize) => {
       },
       password: { type: DataTypes.STRING, allowNull: false },
       confirmPassword: { type: DataTypes.STRING, allowNull: false },
-      role: {
-        type: String,
-        default: "superAdmin",
-        enum: ["superAdmin", "user", "admin"],
-      },
-    },
-    {
-      timestamps: false,
+});
+
+console.log(User === sequelize.models.User);
+
+try {
+  sequelize.sync();
+} catch (err) {
+  console.log(console(err.message));
     }
-  );
-  return User;
-};
+module.exports = User;

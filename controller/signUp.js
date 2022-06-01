@@ -1,4 +1,4 @@
-const User = require("../Model/signUpModel");
+const User = require("../Model/signUpModel.js");
 
 console.log(User);
 
@@ -6,7 +6,7 @@ const joi = require("joi");
 
 const bcrypt = require("bcrypt");
 
-exports.userRegister = async (request, response) => {
+const userRegister = async (request, response) => {
   const password = request.body.pswd;
   const confirmPassword = request.body.password;
 
@@ -16,7 +16,6 @@ exports.userRegister = async (request, response) => {
     email: request.body.email,
     password: request.body.password,
     confirmPassword: request.body.confirmPassword,
-    role: request.body.role,
   };
 
   const schema = joi.object({
@@ -34,15 +33,17 @@ exports.userRegister = async (request, response) => {
     const result = await schema.validateAsync(usr);
   } catch (err) {
     response.send(err.details[0].message);
-    const db = require("../Model/signUpModel");
-    const User = db.User;
   }
   const exist = await User.findOne({
     where: { email: request.body.email },
   });
+
   if (exist === null) {
-    (usr.password = await bcrypt.hash(password, 10)),
-      (usr.confirmPassword = await bcrypt.hash(confirmPassword, 10)),
+    (usr.password = await bcrypt.hash(request.body.password, 10)),
+      (usr.confirmPassword = await bcrypt.hash(
+        request.body.confirmPassword,
+        10
+      )),
       (created_user = await User.create(usr));
 
     response.status(201).json(created_user);
@@ -50,3 +51,5 @@ exports.userRegister = async (request, response) => {
     response.send("This user already exists");
   }
 };
+
+module.exports = userRegister;
