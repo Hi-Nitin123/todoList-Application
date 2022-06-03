@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 require("./routes/signUpRoute")(app);
 require("./routes/loginRoute")(app);
 require("./routes/secretPage")(app);
+require("./routes/todoListRoute")(app);
 
 app.listen(8000, function () {
   console.log("This is running on the port 8000!");
