@@ -4,6 +4,8 @@ const bcrypt = require("bcrypt");
 
 const jwt = require("jsonwebtoken");
 
+require("dotenv").config();
+
 exports.loginUser = async (req, res) => {
   const foundUser = await userLogin.findOne({
     where: { email: req.body.email },
@@ -19,7 +21,7 @@ exports.loginUser = async (req, res) => {
         {
           email: foundUser.email,
         },
-        "dshgfhjdsgfsuydegfrdsjhfgdhjsfghjdgvbdhjgdhjbgvxjbghdfjgdf"
+        process.env.secret_key
       );
       res.status(200).json({ token: token });
     } else {
