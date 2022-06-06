@@ -11,4 +11,10 @@ const sequelize = new Sequelize(
     logging: false,
   }
 );
+
+try {
+  sequelize.sync();
+} catch (err) {
+  console.log(err);
+}
 module.exports = { sequelize, DataTypes };

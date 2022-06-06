@@ -19,11 +19,10 @@ const User = sequelize.define("User", {
   },
 });
 
-console.log(User === sequelize.models.User);
-
 try {
   sequelize.sync({ alter: true });
 } catch (err) {
   console.log(console(err.message));
 }
+
 module.exports = User;

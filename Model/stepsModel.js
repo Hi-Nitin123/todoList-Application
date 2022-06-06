@@ -2,7 +2,7 @@ const { sequelize, DataTypes } = require("./db");
 
 const joi = require("joi");
 exports.mySteps = sequelize.define("mySteps", {
-  id: {
+  serialNo: {
     primaryKey: true,
     allowNull: false,
     autoIncrement: true,

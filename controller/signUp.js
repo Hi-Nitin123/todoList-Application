@@ -7,7 +7,7 @@ const joi = require("joi");
 const bcrypt = require("bcrypt");
 
 const userRegister = async (request, response) => {
-  const password = request.body.pswd;
+  const password = request.body.password;
   const confirmPassword = request.body.password;
 
   const usr = {
@@ -34,23 +34,27 @@ const userRegister = async (request, response) => {
   try {
     const result = await schema.validateAsync(usr);
   } catch (err) {
-    response.send(err.details[0].message);
+    console.log(err);
   }
-  const exist = await User.findOne({
-    where: { email: request.body.email },
-  });
 
-  if (exist === null) {
-    (usr.password = await bcrypt.hash(request.body.password, 10)),
-      (usr.confirmPassword = await bcrypt.hash(
-        request.body.confirmPassword,
-        10
-      )),
-      (created_user = await User.create(usr));
+  try {
+    const exist = await User.findOne({
+      where: { email: request.body.email },
+    });
+    if (exist === null) {
+      (usr.password = await bcrypt.hash(request.body.password, 10)),
+        (usr.confirmPassword = await bcrypt.hash(
+          request.body.confirmPassword,
+          10
+        )),
+        (created_user = await User.create(usr));
 
-    response.status(201).json(created_user);
-  } else {
-    response.send("This user already exists");
+      response.status(201).json(created_user);
+    } else {
+      response.send("This user already exists");
+    }
+  } catch (err) {
+    console.log(err);
   }
 };
 

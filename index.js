@@ -1,5 +1,5 @@
 const express = require("express");
-
+const db = require("./Model/db");
 const app = express();
 
 const auth = require("./middleware/auth");
@@ -17,6 +17,14 @@ require("./routes/secretPage")(app);
 require("./routes/todoListRoute")(app);
 require("./routes/stepsRoute")(app);
 
+db.sequelize
+  .sync()
+  .then(() => {
+    console.log("Database created");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 app.listen(8000, function () {
   console.log("This is running on the port 8000!");
 });

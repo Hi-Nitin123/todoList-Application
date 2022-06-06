@@ -1,5 +1,9 @@
 const mySteps = require("../Model/stepsModel").mySteps;
 
+const myTodoList = require("../Model/myTodoList").myTodoList;
+
+myTodoList.hasMany(mySteps);
+
 const joi = require("joi");
 
 console.log(mySteps);

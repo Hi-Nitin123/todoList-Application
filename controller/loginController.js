@@ -7,9 +7,13 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 exports.loginUser = async (req, res) => {
-  const foundUser = await userLogin.findOne({
-    where: { email: req.body.email },
-  });
+  try {
+    const foundUser = await userLogin.findOne({
+      where: { email: req.body.email },
+    });
+  } catch (err) {
+    console.log(err);
+  }
   if (foundUser) {
     console.log(foundUser.password);
     const password_valid = await bcrypt.compare(
