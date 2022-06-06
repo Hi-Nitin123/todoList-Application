@@ -1,7 +1,5 @@
 const { sequelize, DataTypes } = require("./db");
 
-const myTodoList = require("../Model/myTodoList");
-
 const joi = require("joi");
 exports.mySteps = sequelize.define("mySteps", {
   id: {
@@ -18,7 +16,6 @@ exports.mySteps = sequelize.define("mySteps", {
   },
   todoListId: {
     type: DataTypes.INTEGER,
-    allowNull: false,
   },
 });
 
