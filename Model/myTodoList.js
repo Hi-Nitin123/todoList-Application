@@ -16,8 +16,11 @@ exports.myTodoList = sequelize.define("myTodoList", {
   },
 });
 
-try {
-  sequelize.sync({ alter: true });
-} catch (err) {
-  console.log(console(err.message));
-}
+sequelize
+  .sync()
+  .then(() => {
+    console.log("working");
+  })
+  .catch((err) => {
+    console.log(`error is ${err}`);
+  });

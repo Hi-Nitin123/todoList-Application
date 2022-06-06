@@ -7,16 +7,15 @@ const joi = require("joi");
 const bcrypt = require("bcrypt");
 
 const userRegister = async (request, response) => {
-  const password = request.body.password;
-  const confirmPassword = request.body.password;
-
+  const { firstName, lastName, email, password, confirmPassword, role } =
+    request.body;
   const usr = {
-    firstName: request.body.firstName,
-    lastName: request.body.lastName,
-    email: request.body.email,
-    password: request.body.password,
-    confirmPassword: request.body.confirmPassword,
-    role: request.body.role,
+    firstName,
+    lastName,
+    email,
+    password,
+    confirmPassword,
+    role,
   };
 
   const schema = joi.object({
@@ -34,27 +33,25 @@ const userRegister = async (request, response) => {
   try {
     const result = await schema.validateAsync(usr);
   } catch (err) {
-    console.log(err);
+    response.send(err.details[0].message);
   }
-
-  try {
-    const exist = await User.findOne({
-      where: { email: request.body.email },
-    });
-    if (exist === null) {
-      (usr.password = await bcrypt.hash(request.body.password, 10)),
-        (usr.confirmPassword = await bcrypt.hash(
-          request.body.confirmPassword,
-          10
-        )),
-        (created_user = await User.create(usr));
-
+  const exist = await User.findOne({
+    where: { email: email },
+  });
+  console.log(password);
+  if (exist === null) {
+    bcrypt.hash(request.body.password, 10, async (err, hash) => {
+      created_user = await User.create({
+        firstName,
+        lastName,
+        email,
+        password,
+        role,
+      });
       response.status(201).json(created_user);
-    } else {
-      response.send("This user already exists");
-    }
-  } catch (err) {
-    console.log(err);
+    });
+  } else {
+    response.send("This user already exists");
   }
 };
 

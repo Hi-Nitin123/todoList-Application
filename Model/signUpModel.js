@@ -11,7 +11,7 @@ const User = sequelize.define("User", {
     unique: true,
   },
   password: { type: DataTypes.STRING, allowNull: false },
-  confirmPassword: { type: DataTypes.STRING, allowNull: false },
+
   role: {
     type: DataTypes.STRING,
     defaultValue: "user",
@@ -19,10 +19,13 @@ const User = sequelize.define("User", {
   },
 });
 
-try {
-  sequelize.sync({ alter: true });
-} catch (err) {
-  console.log(console(err.message));
-}
+sequelize
+  .sync({ force: true })
+  .then(() => {
+    console.log("working");
+  })
+  .catch((err) => {
+    console.log(`error is ${err}`);
+  });
 
 module.exports = User;

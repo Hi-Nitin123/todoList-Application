@@ -12,9 +12,4 @@ const sequelize = new Sequelize(
   }
 );
 
-try {
-  sequelize.sync();
-} catch (err) {
-  console.log(err);
-}
 module.exports = { sequelize, DataTypes };
