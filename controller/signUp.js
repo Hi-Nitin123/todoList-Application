@@ -1,7 +1,5 @@
 const User = require("../Model/signUpModel.js").User;
 
-console.log("User:", User);
-
 const joi = require("joi");
 
 const bcrypt = require("bcrypt");
@@ -39,7 +37,6 @@ const userRegister = async (request, response) => {
 
   if (exist === null) {
     const hashedPassword = bcrypt.hash(password, 10, async (err, hash) => {
-      console.log("hash:", hashedPassword);
       created_user = await User.create({
         firstName,
         lastName,
