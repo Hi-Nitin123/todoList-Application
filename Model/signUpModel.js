@@ -2,12 +2,17 @@ const { sequelize, DataTypes } = require("./db");
 
 const joi = require("joi");
 exports.User = sequelize.define("User", {
+  Id: {
+    allowNull: false,
+    autoIncrement: true,
+    primaryKey: true,
+    type: DataTypes.INTEGER,
+  },
   firstName: { allowNull: false, type: DataTypes.STRING },
   lastName: { allowNull: false, type: DataTypes.STRING },
   email: {
     type: DataTypes.STRING,
     allowNull: false,
-    primaryKey: true,
     unique: true,
   },
   password: { type: DataTypes.STRING, allowNull: false },

@@ -23,11 +23,12 @@ const myTodoList = sequelize.define("myTodoList", {
   },
   UserId: {
     type: DataTypes.INTEGER,
+    // allowNull: false,
   },
 });
 
 sequelize
-  .sync()
+  .sync({ alter: true })
   .then(() => {
     console.log("working");
   })

@@ -1,6 +1,9 @@
-const userLogin = require("../Model/signUpModel");
+const userLogin = require("../Model/signUpModel").User;
+
+console.log("userLogin:", userLogin);
 
 const bcrypt = require("bcrypt");
+const { redirect } = require("express/lib/response");
 
 const jwt = require("jsonwebtoken");
 
@@ -25,7 +28,10 @@ exports.loginUser = async (req, res) => {
         },
         process.env.secret_key
       );
-      res.status(200).json({ token: token });
+      `res.status(200).json({ token: token });`;
+      if (foundUser.role === "user") {
+        res.redirect("/createTodoList");
+      }
     } else {
       res.status(400).json({ error: "Password Incorrect" });
     }
