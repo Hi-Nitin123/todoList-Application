@@ -10,7 +10,6 @@ exports.loginUser = async (req, res) => {
   const foundUser = await userLogin.findOne({
     where: { email: req.body.email },
   });
-  console.log("foundUser:", foundUser);
   if (foundUser) {
     console.log(foundUser.password);
     const password_valid = await bcrypt.compare(

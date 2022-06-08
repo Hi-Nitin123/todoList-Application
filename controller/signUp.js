@@ -1,6 +1,6 @@
-const User = require("../Model/signUpModel.js");
+const User = require("../Model/signUpModel.js").User;
 
-console.log(User);
+console.log("User:", User);
 
 const joi = require("joi");
 

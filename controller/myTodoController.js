@@ -2,7 +2,9 @@ const myTodoList = require("../Model/myTodoList").myTodoList;
 
 const joi = require("joi");
 
-console.log(myTodoList);
+const User = require("../Model/signUpModel").User;
+
+User.hasMany(myTodoList);
 
 exports.entertodoList = async (request, response) => {
   const todoItem = {

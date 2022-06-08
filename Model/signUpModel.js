@@ -1,7 +1,7 @@
 const { sequelize, DataTypes } = require("./db");
 
 const joi = require("joi");
-const User = sequelize.define("User", {
+exports.User = sequelize.define("User", {
   firstName: { allowNull: false, type: DataTypes.STRING },
   lastName: { allowNull: false, type: DataTypes.STRING },
   email: {
@@ -26,5 +26,3 @@ sequelize
   .catch((err) => {
     console.log(`error is ${err}`);
   });
-
-module.exports = User;

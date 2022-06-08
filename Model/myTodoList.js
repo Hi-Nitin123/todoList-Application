@@ -1,7 +1,9 @@
 const { sequelize, DataTypes } = require("./db");
 
+const User = require("./signUpModel");
 const joi = require("joi");
-exports.myTodoList = sequelize.define("myTodoList", {
+const { mySteps } = require("./stepsModel");
+const myTodoList = sequelize.define("myTodoList", {
   id: {
     primaryKey: true,
     allowNull: false,
@@ -14,6 +16,14 @@ exports.myTodoList = sequelize.define("myTodoList", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  status: {
+    type: DataTypes.STRING,
+    enum: ["pending", "done"],
+    defaultValue: "pending",
+  },
+  UserId: {
+    type: DataTypes.INTEGER,
+  },
 });
 
 sequelize
@@ -24,3 +34,5 @@ sequelize
   .catch((err) => {
     console.log(`error is ${err}`);
   });
+
+module.exports = { myTodoList };
