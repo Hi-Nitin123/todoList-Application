@@ -28,6 +28,7 @@ exports.loginUser = async (req, res) => {
         },
         process.env.secret_key
       );
+
       res.status(200).json({ token: token });
       if (foundUser.role === "user") {
         res.redirect("/createTodoList");

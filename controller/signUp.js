@@ -5,7 +5,7 @@ const joi = require("joi");
 const bcrypt = require("bcrypt");
 
 const userRegister = async (request, response) => {
-  const { firstName, lastName, email, password, confirmPassword, role } =
+  const { firstName, lastName, email, password, confirmPassword } =
     request.body;
   const usr = {
     firstName,
