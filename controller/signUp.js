@@ -38,16 +38,18 @@ const userRegister = async (request, response) => {
   const exist = await User.findOne({
     where: { email: email },
   });
-  console.log(password);
+
   if (exist === null) {
-    bcrypt.hash(request.body.password, 10, async (err, hash) => {
+    const hashedPassword = bcrypt.hash(password, 10, async (err, hash) => {
+      console.log("hash:", hashedPassword);
       created_user = await User.create({
         firstName,
         lastName,
         email,
-        password,
+        password: hash,
         role,
       });
+
       response.status(201).json(created_user);
     });
   } else {

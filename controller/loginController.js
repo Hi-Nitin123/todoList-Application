@@ -10,13 +10,16 @@ exports.loginUser = async (req, res) => {
   const foundUser = await userLogin.findOne({
     where: { email: req.body.email },
   });
+  console.log("foundUser:", foundUser);
   if (foundUser) {
     console.log(foundUser.password);
     const password_valid = await bcrypt.compare(
       req.body.password,
       foundUser.password
     );
+    console.log("Pass", password_valid);
     if (password_valid) {
+      console.log(password_valid);
       const token = jwt.sign(
         {
           email: foundUser.email,

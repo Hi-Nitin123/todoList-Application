@@ -20,7 +20,7 @@ const User = sequelize.define("User", {
 });
 
 sequelize
-  .sync({ force: true })
+  .sync({ alter: true })
   .then(() => {
     console.log("working");
   })
