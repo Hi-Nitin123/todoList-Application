@@ -1,10 +1,11 @@
 const getUsers = require("../Model/signUpModel").User;
 
 exports.sendUsers = (request, response) => {
+  request.role = "user";
   getUsers
     .findAll({
       where: {
-        role: request.body.role,
+        role: request.role,
       },
     })
     .then((data) => {
