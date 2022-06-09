@@ -5,6 +5,7 @@ const app = express();
 const auth = require("./middleware/auth");
 
 var bodyParser = require("body-parser");
+const { route } = require("express/lib/application");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -18,6 +19,7 @@ require("./routes/todoListRoute")(app);
 require("./routes/deleteTodo")(app);
 require("./routes/listOfUsers")(app);
 require("./routes/showUserProfile")(app);
+require("./routes/showUsersToAdmin")(app);
 
 // require("./routes/stepsRoute")(app);
 

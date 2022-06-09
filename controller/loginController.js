@@ -28,7 +28,7 @@ exports.loginUser = async (req, res) => {
           Id: foundUser.Id,
         },
         process.env.secret_key,
-        { expiresIn: "2 days" }
+        { expiresIn: "2h" }
       );
 
       res.status(200).json({ token: token });
