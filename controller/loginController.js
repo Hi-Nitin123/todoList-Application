@@ -20,19 +20,18 @@ exports.loginUser = async (req, res) => {
       foundUser.password
     );
     console.log("Pass", password_valid);
+    console.log(foundUser.Id);
     if (password_valid) {
       console.log(password_valid);
       const token = jwt.sign(
         {
-          email: foundUser.email,
+          Id: foundUser.Id,
         },
-        process.env.secret_key
+        process.env.secret_key,
+        { expiresIn: "2 days" }
       );
 
       res.status(200).json({ token: token });
-      if (foundUser.role === "user") {
-        res.redirect("/createTodoList");
-      }
     } else {
       res.status(400).json({ error: "Password Incorrect" });
     }

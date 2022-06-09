@@ -9,6 +9,7 @@ exports.auth = async (req, res, next) => {
     let data = req.headers.authorization;
     console.log(data.split(" ")[1]);
     jwt.verify(data.split(" ")[1], process.env.secret_key);
+
     next();
   } catch (error) {
     res.status(401).send(error);

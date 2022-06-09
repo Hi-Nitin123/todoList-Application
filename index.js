@@ -17,6 +17,8 @@ require("./routes/secretPage")(app);
 require("./routes/todoListRoute")(app);
 require("./routes/deleteTodo")(app);
 require("./routes/listOfUsers")(app);
+require("./routes/showUserProfile")(app);
+
 // require("./routes/stepsRoute")(app);
 
 db.sequelize
