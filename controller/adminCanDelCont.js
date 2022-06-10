@@ -20,7 +20,7 @@ exports.deleteUser = async (req, res) => {
           console.log(err);
         });
     } else {
-      response.send("You are not authorized to delete this user");
+      res.send("You are not authorized to delete this user");
     }
   });
 };
