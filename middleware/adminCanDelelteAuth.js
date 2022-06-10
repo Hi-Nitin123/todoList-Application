@@ -4,11 +4,11 @@ require("dotenv").config();
 
 exports.deleteUserAuth = async (req, res, next) => {
   let data = req.headers.authorization;
-  let token = data.split(" ")[1];
   if (data === undefined) {
-    token = null;
+    res.send("Please provide a token");
   }
-
+  let token = data.split(" ")[1];
+  console.log(token);
   if (!token) {
     return res.status(403).send({
       message: "No token provided!",

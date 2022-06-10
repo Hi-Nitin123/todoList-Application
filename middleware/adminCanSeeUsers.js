@@ -4,6 +4,9 @@ require("dotenv").config();
 
 exports.verifyAdmin = (req, res, next) => {
   let data = req.headers.authorization;
+  if (data === undefined) {
+    res.send("Please provide a token");
+  }
   let token = data.split(" ")[1];
   console.log(token);
   if (!token) {
