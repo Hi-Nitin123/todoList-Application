@@ -12,6 +12,8 @@ exports.adminCanSeeUsers = (req, res) => {
         .catch((err) => {
           res.send(err);
         });
+    } else {
+      res.send("Sorry you are not an admin");
     }
   });
 };

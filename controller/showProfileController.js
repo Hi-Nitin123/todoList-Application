@@ -1,5 +1,3 @@
-const res = require("express/lib/response");
-
 const myTodoList = require("../Model/myTodoList").myTodoList;
 
 exports.sendProfile = async (request, response) => {
