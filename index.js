@@ -20,6 +20,7 @@ require("./routes/deleteTodo")(app);
 require("./routes/listOfUsers")(app);
 require("./routes/showUserProfile")(app);
 require("./routes/showUsersToAdmin")(app);
+require("./routes/adminCanDeleteRoute")(app);
 
 // require("./routes/stepsRoute")(app);
 
