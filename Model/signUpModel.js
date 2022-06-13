@@ -21,6 +21,11 @@ exports.User = sequelize.define("User", {
     type: DataTypes.STRING,
     defaultValue: "user",
   },
+  rights: {
+    type: DataTypes.STRING,
+    defaultValue: "unblocked",
+    enum: ["blocked", "unblocked"],
+  },
 });
 
 sequelize
