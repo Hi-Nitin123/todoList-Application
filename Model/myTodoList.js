@@ -2,7 +2,7 @@ const { sequelize, DataTypes } = require("./db");
 
 const User = require("./signUpModel");
 const joi = require("joi");
-const { mySteps } = require("./stepsModel");
+
 const myTodoList = sequelize.define("myTodoList", {
   id: {
     primaryKey: true,
