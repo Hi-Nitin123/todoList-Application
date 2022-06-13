@@ -13,7 +13,7 @@ exports.adminCanSeeUsers = (req, res) => {
           res.send(err);
         });
     } else {
-      res.send("Sorry you are not an admin");
+      res.status(401).json({ error: "Sorry You are not an amdin" });
     }
   });
 };

@@ -17,6 +17,8 @@ exports.editTodo = (request, response) => {
       response.send("todoListEdited successfully");
     })
     .catch((err) => {
-      response.send("You are not authorized to edit this todoList");
+      response
+        .status(401)
+        .json({ message: "You are not authorized to edit this todo list" });
     });
 };

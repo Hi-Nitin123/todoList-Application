@@ -1,8 +1,6 @@
+const res = require("express/lib/response");
+
 const myTodoList = require("../Model/myTodoList").myTodoList;
-
-const { op } = require("sequelize");
-
-// const users = require("../Model/signUpModel").User;
 
 exports.deleteTodo = (request, response) => {
   const { Op } = require("sequelize");
@@ -16,7 +14,9 @@ exports.deleteTodo = (request, response) => {
       response.send("todoList deleted");
     })
     .catch((err) => {
-      response.send(err.details[0].message);
+      response
+        .status(401)
+        .json({ message: "You are not authorized to delete this todo list" });
     });
 };
 
