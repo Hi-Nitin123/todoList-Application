@@ -5,7 +5,7 @@ exports.editTodo = (request, response) => {
   myTodoList
     .findOne({
       where: {
-        [Op.and]: [{ UserId: request.UserId }, { id: request.body.id }],
+        [Op.and]: [{ UserId: request.Id }, { id: request.body.id }],
       },
     })
     .then((data) => {

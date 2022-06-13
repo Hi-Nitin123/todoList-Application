@@ -1,12 +1,7 @@
-const blockUsers = require("../middleware/adminCanSeeUsers");
+const blockUsers = require("../middleware/authorization");
 
 const blockUsersController = require("../controller/rightsCont");
 
-console.log("ndsbahfdsfhkjdghkj");
 module.exports = (app) => {
-  app.patch(
-    "/blockUsers",
-    blockUsers.verifyAdmin,
-    blockUsersController.blockUser
-  );
+  app.patch("/blockUsers", blockUsers.verify, blockUsersController.blockUser);
 };

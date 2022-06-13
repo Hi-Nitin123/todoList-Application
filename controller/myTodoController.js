@@ -10,7 +10,7 @@ exports.entertodoList = async (request, response) => {
   const todoItem = {
     todoListName: request.body.todoListName,
     description: request.body.description,
-    UserId: request.UserId,
+    UserId: request.Id,
   };
 
   const schema = joi.object({

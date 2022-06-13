@@ -5,7 +5,7 @@ exports.sendProfile = async (request, response) => {
   myTodoList
     .findAll({
       where: {
-        UserId: request.UserId,
+        UserId: request.Id,
       },
     })
     .then((data) => {

@@ -7,7 +7,7 @@ exports.deleteTodo = (request, response) => {
   myTodoList
     .destroy({
       where: {
-        [Op.and]: [{ UserId: request.UserId }, { id: request.body.id }],
+        [Op.and]: [{ UserId: request.Id }, { id: request.body.id }],
       },
     })
     .then((msg) => {

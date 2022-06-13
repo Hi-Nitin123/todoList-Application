@@ -2,10 +2,10 @@ const jwt = require("jsonwebtoken");
 
 require("dotenv").config();
 
-exports.editTodoAuth = async (req, res, next) => {
+exports.verify = async (req, res, next) => {
   let data = req.headers.authorization;
   if (data === undefined) {
-    res.send("please provide a token");
+    res.send("Please provide a token");
   }
   let token = data.split(" ")[1];
   console.log(token);
@@ -22,8 +22,8 @@ exports.editTodoAuth = async (req, res, next) => {
     }
     console.log("decoded", decoded);
 
-    req.UserId = decoded.Id;
-    console.log(req.Use);
+    req.Id = decoded.Id;
+    console.log(req.Id);
 
     // myId = req.userId;
     next();

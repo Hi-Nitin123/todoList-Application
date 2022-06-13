@@ -19,8 +19,7 @@ exports.loginUser = async (req, res) => {
       req.body.password,
       foundUser.password
     );
-    console.log("Pass", password_valid);
-    console.log(foundUser.Id);
+
     if (password_valid) {
       if (foundUser.rights === "blocked") {
         res.status(401).json({ messsage: "You are blocked" });

@@ -1,7 +1,7 @@
-const editTodoAuth = require("../middleware/editTodoAuth");
+const editTodoAuth = require("../middleware/authorization");
 
 const editTodoCont = require("../controller/editTodoController");
 
 module.exports = (app) => {
-  app.patch("/updateTodo", editTodoAuth.editTodoAuth, editTodoCont.editTodo);
+  app.patch("/updateTodo", editTodoAuth.verify, editTodoCont.editTodo);
 };

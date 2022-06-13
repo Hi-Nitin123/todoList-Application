@@ -1,11 +1,11 @@
-const deleteUserAuth = require("../middleware/adminCanDelelteAuth");
+const deleteUserAuth = require("../middleware/authorization");
 
 const deleteUserController = require("../controller/adminCanDelCont");
 
 module.exports = (app) => {
   app.delete(
     "/deleteUser",
-    deleteUserAuth.deleteUserAuth,
+    deleteUserAuth.verify,
     deleteUserController.deleteUser
   );
 };

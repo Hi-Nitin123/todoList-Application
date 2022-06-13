@@ -1,7 +1,7 @@
 const myTodoList = require("../controller/myTodoController");
 
-const myTodoAuth = require("../middleware/myTodoAuth");
+const myTodoAuth = require("../middleware/authorization");
 
 module.exports = (app) => {
-  app.post("/createTodoList", myTodoAuth.myTodoAuth, myTodoList.entertodoList);
+  app.post("/createTodoList", myTodoAuth.verify, myTodoList.entertodoList);
 };
