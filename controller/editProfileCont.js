@@ -30,6 +30,6 @@ exports.profileEdited = async (request, response) => {
     );
     response.send(`Your profile was edited successfully`);
   } catch (err) {
-    response.send(err.details[0].message);
+    response.status(400).send(err.details[0].message);
   }
 };
