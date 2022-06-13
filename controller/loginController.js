@@ -22,7 +22,9 @@ exports.loginUser = async (req, res) => {
     console.log("Pass", password_valid);
     console.log(foundUser.Id);
     if (password_valid) {
-      console.log(password_valid);
+      if (foundUser.rights === "blocked") {
+        res.status(401).json({ messsage: "You are blocked" });
+      }
       const token = jwt.sign(
         {
           Id: foundUser.Id,
