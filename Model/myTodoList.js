@@ -18,7 +18,7 @@ const myTodoList = sequelize.define("myTodoList", {
   },
   status: {
     type: DataTypes.STRING,
-    enum: ["pending", "done"],
+    enum: ["pending", "done", "ongoing"],
     defaultValue: "pending",
   },
   UserId: {
