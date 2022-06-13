@@ -23,6 +23,7 @@ require("./routes/showUsersToAdmin")(app);
 require("./routes/adminCanDeleteRoute")(app);
 require("./routes/editTodoRoute")(app);
 require("./routes/amdinCanBlockUsers")(app);
+require("./routes/editProfileRoute")(app);
 
 // require("./routes/stepsRoute")(app);
 
