@@ -21,7 +21,9 @@ exports.entertodoList = async (request, response) => {
   try {
     const result = await schema.validateAsync(todoItem);
 
-    const created_user = await myTodoList.create(result);
+    const created_user = await myTodoList.create(todoItem).catch((err) => {
+      console.log(err);
+    });
     console.log(created_user);
 
     response.status(201).json(created_user);

@@ -5,7 +5,7 @@ exports.blockUser = (request, response) => {
     if (data.role === "admin") {
       users.update(
         { rights: request.body.rights },
-        { where: { Id: request.body.Id } }
+        { where: { Id: request.params.Id } }
       );
       response.send(`User was ${request.body.rights} successfully`);
     } else {
