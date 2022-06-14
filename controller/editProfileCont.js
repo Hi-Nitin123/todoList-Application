@@ -26,7 +26,7 @@ exports.profileEdited = async (request, response) => {
         lastName: request.body.lastName,
         email: request.body.email,
       },
-      { where: { Id: request.Id } }
+      { where: { Id: request.params.Id } }
     );
     response.send(`Your profile was edited successfully`);
   } catch (err) {

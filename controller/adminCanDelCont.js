@@ -8,7 +8,7 @@ exports.deleteUser = async (req, res) => {
     if (data.role === "admin") {
       users
         .destroy({
-          where: { [Op.and]: [{ Id: req.body.Id }, { role: "user" }] },
+          where: { [Op.and]: [{ Id: req.params.Id }, { role: "user" }] },
         })
         .then((data) => {
           res.status(200).send("user deleted successfully");

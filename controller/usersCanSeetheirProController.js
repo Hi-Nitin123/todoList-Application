@@ -2,7 +2,7 @@ const users = require("../Model/signUpModel").User;
 
 exports.myProfile = (req, res) => {
   users
-    .findOne({ where: { Id: req.Id } })
+    .findOne({ where: { Id: req.params.Id } })
     .then((data) => {
       res.json({ data: data });
     })

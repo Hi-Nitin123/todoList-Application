@@ -1,5 +1,3 @@
-const res = require("express/lib/response");
-
 const myTodoList = require("../Model/myTodoList").myTodoList;
 
 exports.deleteTodo = (request, response) => {
@@ -7,7 +5,7 @@ exports.deleteTodo = (request, response) => {
   myTodoList
     .destroy({
       where: {
-        [Op.and]: [{ UserId: request.Id }, { id: request.body.id }],
+        [Op.and]: [{ UserId: request.Id }, { id: request.params.id }],
       },
     })
     .then((msg) => {
