@@ -6,7 +6,7 @@ console.log("myprofile:", myProfile);
 
 module.exports = (app) => {
   app.get(
-    "/user",
+    "/todoList",
     myProfileAuth.verify,
     myProfile.sendProfile,
     (req, res) => {}

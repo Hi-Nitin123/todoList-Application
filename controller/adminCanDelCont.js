@@ -1,26 +1,32 @@
 const users = require("../Model/signUpModel").User;
 
-const { request } = require("express");
-const { response } = require("express");
-
 exports.deleteUser = async (req, res) => {
+  console.log(req.Id);
   const { Op } = require("sequelize");
   users.findOne({ where: { Id: req.Id } }).then((data) => {
+    console.log("data:", data);
     if (data.role === "admin") {
       users
-        .findAll({ where: { role: "user" } })
-        .then((showUsers) => {
-          showUsers.Id = req.body.Id;
-          users.destroy({ where: { Id: showUsers.Id } });
+        .destroy({
+          where: { [Op.and]: [{ Id: req.body.Id }, { role: "user" }] },
         })
-        .then((msg) => {
-          res.send("User deleted successfully");
+        .then((data) => {
+          res.status(200).send("user deleted successfully");
         })
         .catch((err) => {
-          console.log(err);
+          res.send("user was not deleted");
         });
     } else {
-      res.send("You are not authorized to delete this user");
+      users
+        .destroy({
+          where: { Id: req.Id },
+        })
+        .then((err) => {
+          res.status(200).send("Your account deleted successfully");
+        })
+        .catch((err) => {
+          res.send("yopu account was not deleted");
+        });
     }
   });
 };
