@@ -5,13 +5,16 @@ exports.editTodo = (request, response) => {
   myTodoList
     .findOne({
       where: {
-        [Op.and]: [{ UserId: request.Id }, { id: request.body.id }],
+        [Op.and]: [{ UserId: request.Id }, { id: request.params.id }],
       },
     })
     .then((data) => {
-      console.log("data:", request.UserId, request.body.id);
       myTodoList.update(
-        { todoListName: request.body.todoListName },
+        {
+          todoListName: request.body.todoListName,
+          description: request.body.description,
+          status: request.body.status,
+        },
         { where: { id: data.id } }
       );
       response.send("todoListEdited successfully");
