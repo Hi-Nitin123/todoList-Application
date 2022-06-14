@@ -1,7 +1,6 @@
 const myTodoList = require("../Model/myTodoList").myTodoList;
 
 exports.sendProfile = async (request, response) => {
-  console.log("reqdbfsd:", request.UserId);
   myTodoList
     .findAll({
       where: {

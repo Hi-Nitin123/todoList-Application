@@ -25,6 +25,7 @@ require("./routes/editTodoRoute")(app);
 require("./routes/amdinCanBlockUsers")(app);
 require("./routes/editProfileRoute")(app);
 require("./routes/statusRoute")(app);
+require("./routes/userCanSeetheirProfile")(app);
 
 // require("./routes/stepsRoute")(app);
 
