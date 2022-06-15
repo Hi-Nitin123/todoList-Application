@@ -1,6 +1,6 @@
-const users = require("../Model/signUpModel").User;
+import users from "../Model/signUpModel.js";
 
-exports.deleteUser = async (req, res) => {
+const deleteUser = async (req, res) => {
   console.log(req.Id);
   const { Op } = require("sequelize");
   users.findOne({ where: { Id: req.Id } }).then((data) => {
@@ -33,3 +33,4 @@ exports.deleteUser = async (req, res) => {
     }
   });
 };
+export default deleteUser;

@@ -1,8 +1,7 @@
-const login = require("../controller/loginController");
+import loginUser from "../controller/loginController.js";
 
-const auth = require("../middleware/auth");
-
-module.exports = (app) => {
-  console.log(login);
-  app.post("/login", login.loginUser);
+const loginRoute = (app) => {
+  app.post("/login", loginUser);
 };
+
+export default loginRoute;

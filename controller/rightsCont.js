@@ -1,6 +1,6 @@
-const users = require("../Model/signUpModel").User;
+import users from "../Model/signUpModel.js";
 
-exports.blockUser = (request, response) => {
+const blockUser = (request, response) => {
   users.findOne({ where: { Id: request.Id } }).then((data) => {
     if (data.role === "admin") {
       users.update(
@@ -15,3 +15,5 @@ exports.blockUser = (request, response) => {
     }
   });
 };
+
+export default blockUser;

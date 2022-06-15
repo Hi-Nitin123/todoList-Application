@@ -1,6 +1,6 @@
-const todoList = require("../Model/myTodoList").myTodoList;
+import todoList from "../Model/myTodoList.js";
 
-exports.getTodoById = async (req, res) => {
+const getTodoById = async (req, res) => {
   console.log(req.params);
   const { Op } = require("sequelize");
   todoList
@@ -14,3 +14,5 @@ exports.getTodoById = async (req, res) => {
       res.status(404).send("todolist not found");
     });
 };
+
+export default getTodoById;

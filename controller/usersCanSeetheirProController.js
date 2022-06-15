@@ -1,6 +1,6 @@
-const users = require("../Model/signUpModel").User;
+import users from "../Model/signUpModel.js";
 
-exports.myProfile = (req, res) => {
+const myProfile = (req, res) => {
   users
     .findOne({ where: { Id: req.params.Id } })
     .then((data) => {
@@ -10,3 +10,5 @@ exports.myProfile = (req, res) => {
       res.status(404).send("user not found");
     });
 };
+
+export default myProfile;

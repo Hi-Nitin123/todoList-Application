@@ -1,7 +1,7 @@
-const myTodoList = require("../controller/myTodoController");
+import entertodoList from "../controller/myTodoController.js";
+import verify from "../middleware/authorization.js";
 
-const myTodoAuth = require("../middleware/authorization");
-
-module.exports = (app) => {
-  app.post("/todoList", myTodoAuth.verify, myTodoList.entertodoList);
+const todoRoute = (app) => {
+  app.post("/todoList", verify, entertodoList);
 };
+export default todoRoute;

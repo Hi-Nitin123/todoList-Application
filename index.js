@@ -1,34 +1,43 @@
-const express = require("express");
-const db = require("./Model/db");
+import express from "express";
+import * as db from "./Model/db.js";
 const app = express();
 
-const auth = require("./middleware/auth");
+import bodyParser from "body-parser";
 
-var bodyParser = require("body-parser");
-const { route } = require("express/lib/application");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // require("./routes/todoApp")(app);
-// require("./routes/stepsRoute")(app);
 
-require("./routes/signUpRoute")(app);
-require("./routes/loginRoute")(app);
-require("./routes/secretPage")(app);
-require("./routes/todoListRoute")(app);
-require("./routes/deleteTodo")(app);
-require("./routes/listOfUsers")(app);
-require("./routes/showUserProfile")(app);
-require("./routes/showUsersToAdmin")(app);
-require("./routes/adminCanDeleteRoute")(app);
-require("./routes/editTodoRoute")(app);
-require("./routes/amdinCanBlockUsers")(app);
-require("./routes/editProfileRoute")(app);
-require("./routes/statusRoute")(app);
-require("./routes/userCanSeetheirProfile")(app);
-require("./routes/todoListById")(app);
+import signUp from "./routes/signUpRoute.js";
+signUp(app);
+import loginRoute from "./routes/loginRoute.js";
+loginRoute(app);
+// import secretPage from "./routes/secretPage";
+import todoRoute from "./routes/todoListRoute.js";
+todoRoute(app);
+import deleteTodoRoute from "./routes/deleteTodo.js";
+deleteTodoRoute(app);
+import showUsersRoute from "./routes/listOfUsers.js";
+showUsersRoute(app);
+import showUserProfile from "./routes/showUserProfile.js";
+showUserProfile(app);
+import showUsersToAdmin from "./routes/showUsersToAdmin.js";
+showUsersToAdmin(app);
+import adminCanDeleteUser from "./routes/adminCanDeleteRoute.js";
+adminCanDeleteUser(app);
+import editTodo from "./routes/editTodoRoute.js";
+editTodo(app);
+import adminCanBlockUser from "./routes/amdinCanBlockUsers.js";
+adminCanBlockUser(app);
+import ediitProfile from "./routes/editProfileRoute.js";
+ediitProfile(app);
 
-// require("./routes/stepsRoute")(app);
+import home from "./routes/userCanSeetheirProfile.js";
+home(app);
+
+import getMyTodoList from "./routes/todoListById.js";
+getMyTodoList(app);
 
 db.sequelize
   .sync()

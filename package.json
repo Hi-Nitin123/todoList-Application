@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
+  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
@@ -28,6 +30,9 @@
     "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.16",
     "sequelize": "^6.20.1",
-    "start": "^5.1.0"
+    "start": "^5.1.0",
+    "version": "^0.1.2"
+
+ 
   }
 }

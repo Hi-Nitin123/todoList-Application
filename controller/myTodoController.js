@@ -1,12 +1,12 @@
-const myTodoList = require("../Model/myTodoList").myTodoList;
+import User from "../Model/signUpModel.js";
 
-const joi = require("joi");
+import myTodoList from "../Model/myTodoList.js";
 
-const User = require("../Model/signUpModel").User;
+import joi from "joi";
 
 User.hasMany(myTodoList);
 
-exports.entertodoList = async (request, response) => {
+const entertodoList = async (request, response) => {
   const todoItem = {
     todoListName: request.body.todoListName,
     description: request.body.description,
@@ -33,3 +33,4 @@ exports.entertodoList = async (request, response) => {
     console.log(err);
   }
 };
+export default entertodoList;

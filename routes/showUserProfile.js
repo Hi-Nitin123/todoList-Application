@@ -1,14 +1,8 @@
-const myProfile = require("../controller/showProfileController");
+import sendProfile from "../controller/showProfileController.js";
 
-const myProfileAuth = require("../middleware/authorization");
+import verify from "../middleware/authorization.js";
 
-console.log("myprofile:", myProfile);
-
-module.exports = (app) => {
-  app.get(
-    "/myTodoList",
-    myProfileAuth.verify,
-    myProfile.sendProfile,
-    (req, res) => {}
-  );
+const showUserProfile = (app) => {
+  app.get("/myTodoList", verify, sendProfile, (req, res) => {});
 };
+export default showUserProfile;

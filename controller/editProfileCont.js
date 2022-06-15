@@ -1,8 +1,8 @@
-const users = require("../Model/signUpModel").User;
+import users from "../Model/signUpModel.js";
 
-const joi = require("joi");
+import joi from "joi";
 
-exports.profileEdited = async (request, response) => {
+const profileEdited = async (request, response) => {
   const { firstName, lastName, email } = request.body;
   const usr = {
     firstName,
@@ -33,3 +33,4 @@ exports.profileEdited = async (request, response) => {
     response.send(err.details[0].message);
   }
 };
+export default profileEdited;

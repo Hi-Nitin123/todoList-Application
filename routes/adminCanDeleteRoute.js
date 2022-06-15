@@ -1,11 +1,8 @@
-const deleteUserAuth = require("../middleware/authorization");
+import verify from "../middleware/authorization.js";
 
-const deleteUserController = require("../controller/adminCanDelCont");
+import deleteUser from "../controller/adminCanDelCont.js";
 
-module.exports = (app) => {
-  app.delete(
-    "/user/:Id",
-    deleteUserAuth.verify,
-    deleteUserController.deleteUser
-  );
+const adminCanDeleteUser = (app) => {
+  app.delete("/user/:Id", verify, deleteUser);
 };
+export default adminCanDeleteUser;

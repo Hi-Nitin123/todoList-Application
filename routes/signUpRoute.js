@@ -1,4 +1,6 @@
-const register = require("../controller/signUp.js");
-module.exports = (app) => {
-  app.post("/signUp", register);
+import userRegister from "../controller/signUp.js";
+const signUp = (app) => {
+  app.post("/signUp", userRegister);
 };
+
+export default signUp;

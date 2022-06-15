@@ -1,7 +1,8 @@
-const getTodoById = require("../controller/todoListByIdController");
+import getTodoById from "../controller/todoListByIdController.js";
 
-const myTodoAuth = require("../middleware/authorization");
+import verify from "../middleware/authorization.js";
 
-module.exports = (app) => {
-  app.get("/todoList/:id", myTodoAuth.verify, getTodoById.getTodoById);
+const getMyTodoList = (app) => {
+  app.get("/todoList/:id", verify, getTodoById);
 };
+export default getMyTodoList;

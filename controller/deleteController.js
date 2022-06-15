@@ -1,7 +1,6 @@
-const myTodoList = require("../Model/myTodoList").myTodoList;
-
-exports.deleteTodo = (request, response) => {
-  const { Op } = require("sequelize");
+import myTodoList from "../Model/myTodoList.js";
+import { Op } from "sequelize";
+const deleteTodo = (request, response) => {
   myTodoList
     .destroy({
       where: {
@@ -18,6 +17,7 @@ exports.deleteTodo = (request, response) => {
     });
 };
 
+export default deleteTodo;
 // exports.deleteRow = async (request, response) => {
 //   users.destroy({
 //     where: {

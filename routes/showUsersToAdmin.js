@@ -1,7 +1,8 @@
-const auth = require("../middleware/authorization");
+import verify from "../middleware/authorization.js";
 
-const getUsers = require("../controller/showUsersToAdminC");
+import adminCanSeeUsers from "../controller/showUsersToAdminC.js";
 
-module.exports = (app) => {
-  app.get("/admin", auth.verify, getUsers.adminCanSeeUsers);
+const showUsersToAdmin = (app) => {
+  app.get("/admin", verify, adminCanSeeUsers);
 };
+export default showUsersToAdmin;

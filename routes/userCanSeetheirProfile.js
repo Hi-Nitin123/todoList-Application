@@ -1,7 +1,8 @@
-const profileAccess = require("../controller/usersCanSeetheirProController");
+import myProfile from "../controller/usersCanSeetheirProController.js";
 
-const profileAuth = require("../middleware/authorization");
+import verify from "../middleware/authorization.js";
 
-module.exports = (app) => {
-  app.get("/user/:Id", profileAuth.verify, profileAccess.myProfile);
+const home = (app) => {
+  app.get("/user/:Id", verify, myProfile);
 };
+export default home;

@@ -1,6 +1,6 @@
-const users = require("../Model/signUpModel").User;
+import users from "../Model/signUpModel.js";
 
-exports.adminCanSeeUsers = (req, res) => {
+const adminCanSeeUsers = (req, res) => {
   console.log(req.Id);
   users.findOne({ where: { Id: req.Id } }).then((data) => {
     if (data.role === "admin") {
@@ -17,3 +17,4 @@ exports.adminCanSeeUsers = (req, res) => {
     }
   });
 };
+export default adminCanSeeUsers;

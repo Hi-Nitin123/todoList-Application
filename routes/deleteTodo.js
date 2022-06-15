@@ -1,7 +1,9 @@
-const deleteRow = require("../controller/deleteController");
+import deleteTodo from "../controller/deleteController.js";
 
-const deleteTodoAuth = require("../middleware/authorization");
+import verify from "../middleware/authorization.js";
 
-module.exports = (app) => {
-  app.delete("/todoList/:id", deleteTodoAuth.verify, deleteRow.deleteTodo);
+const deleteTodoRoute = (app) => {
+  app.delete("/todoList/:id", verify, deleteTodo);
 };
+
+export default deleteTodoRoute;
