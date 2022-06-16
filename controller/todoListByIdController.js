@@ -1,8 +1,10 @@
 import todoList from "../Model/myTodoList.js";
 
+import { Op } from "sequelize";
+
 const getTodoById = async (req, res) => {
   console.log(req.params);
-  const { Op } = require("sequelize");
+
   todoList
     .findOne({
       where: { [Op.and]: [{ UserId: req.Id }, { id: req.params.id }] },

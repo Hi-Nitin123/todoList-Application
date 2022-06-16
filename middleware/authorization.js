@@ -6,6 +6,7 @@ dotenv.config();
 
 const verify = async (req, res, next) => {
   let data = req.headers.authorization;
+  console.log(data);
   if (data === undefined) {
     res.status(403).send("Please provide a token");
   }
@@ -19,7 +20,7 @@ const verify = async (req, res, next) => {
   jwt.verify(token, process.env.secret_key, (err, decoded) => {
     if (err) {
       return res.status(401).send({
-        message: "Unauthorized!",
+        message: "You are not authorized to edit this todolist",
       });
     }
     console.log("decoded", decoded);
