@@ -2,7 +2,7 @@ import verify from "../middleware/authorization.js";
 
 import deleteUser from "../controller/adminCanDelCont.js";
 
-const adminCanDeleteUser = (app) => {
-  app.delete("/user/:Id", verify, deleteUser);
+const deleteMyAccount = (app) => {
+  app.delete("/user", verify, deleteUser);
 };
-export default adminCanDeleteUser;
+export default deleteMyAccount;

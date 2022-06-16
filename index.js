@@ -24,8 +24,8 @@ import showUserProfile from "./routes/showUserProfile.js";
 showUserProfile(app);
 import showUsersToAdmin from "./routes/showUsersToAdmin.js";
 showUsersToAdmin(app);
-import adminCanDeleteUser from "./routes/adminCanDeleteRoute.js";
-adminCanDeleteUser(app);
+import deleteMyAccount from "./routes/adminCanDeleteRoute.js";
+deleteMyAccount(app);
 import editTodo from "./routes/editTodoRoute.js";
 editTodo(app);
 import adminCanBlockUser from "./routes/amdinCanBlockUsers.js";
@@ -41,6 +41,9 @@ getMyTodoList(app);
 
 import getUsers from "./routes/getUserByIdRoute.js";
 getUsers(app);
+
+import deleteUsers from "./routes/deleteAccByIdRoute.js";
+deleteUsers(app);
 
 db.sequelize
   .sync()
