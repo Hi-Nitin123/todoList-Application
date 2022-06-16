@@ -11,8 +11,8 @@ const profileEdited = async (request, response) => {
   };
 
   const schema = joi.object({
-    firstName: joi.string().min(6).max(30),
-    lastName: joi.string().alphanum().min(6).max(30),
+    firstName: joi.string().min(4).max(30),
+    lastName: joi.string().alphanum().min(4).max(30),
     email: joi
       .string()
       .min(10)

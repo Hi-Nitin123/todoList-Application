@@ -39,6 +39,9 @@ home(app);
 import getMyTodoList from "./routes/todoListById.js";
 getMyTodoList(app);
 
+import getUsers from "./routes/getUserByIdRoute.js";
+getUsers(app);
+
 db.sequelize
   .sync()
   .then(() => {

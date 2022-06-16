@@ -20,7 +20,7 @@ const deleteUser = async (req, res) => {
         })
         .catch((err) => {
           console.log("error:", err);
-          res.send("An admin cannot delete himself");
+          res.status(400).json({ message: "Something went wrong" });
         });
     } else {
       users

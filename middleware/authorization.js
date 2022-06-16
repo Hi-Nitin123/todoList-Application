@@ -8,7 +8,7 @@ const verify = async (req, res, next) => {
   let data = req.headers.authorization;
   console.log(data);
   if (data === undefined) {
-    res.status(403).send("Please provide a token");
+    res.status(401).json({ message: "Please provide a token" });
   }
   let token = data.split(" ")[1];
   console.log(token);
@@ -19,9 +19,9 @@ const verify = async (req, res, next) => {
   }
   jwt.verify(token, process.env.secret_key, (err, decoded) => {
     if (err) {
-      return res.status(401).send({
-        message: "You are not authorized to edit this todolist",
-      });
+      return res
+        .status(403)
+        .json({ message: "You are not authrized to take this action" });
     }
     console.log("decoded", decoded);
 
