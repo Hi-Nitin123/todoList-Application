@@ -6,14 +6,21 @@ import bodyParser from "body-parser";
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+import path from "path";
+import { fileURLToPath } from "url";
 
-// require("./routes/todoApp")(app);
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
+
+app.use("/static", express.static(path.join(__dirname, "views")));
+app.use("/static", express.static("views"));
 
 import signUp from "./routes/signUpRoute.js";
 signUp(app);
 import loginRoute from "./routes/loginRoute.js";
 loginRoute(app);
-// import secretPage from "./routes/secretPage";
+// // import secretPage from "./routes/secretPage";
 import todoRoute from "./routes/todoListRoute.js";
 todoRoute(app);
 import deleteTodoRoute from "./routes/deleteTodo.js";
