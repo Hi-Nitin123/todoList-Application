@@ -1,9 +1,11 @@
 import express from "express";
 import * as db from "./Model/db.js";
-const app = express();
-
+import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
 
+const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 import path from "path";
@@ -13,8 +15,14 @@ const __filename = fileURLToPath(import.meta.url);
 
 const __dirname = path.dirname(__filename);
 
+var corsOptions = {
+  origin: "*",
+  optionsSuccessStatus: 200,
+};
+
 app.use("/static", express.static(path.join(__dirname, "views")));
 app.use("/static", express.static("views"));
+app.use(cors(corsOptions));
 
 import signUp from "./routes/signUpRoute.js";
 signUp(app);
