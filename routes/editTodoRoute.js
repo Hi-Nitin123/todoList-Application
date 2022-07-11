@@ -1,7 +1,9 @@
-const editTodoAuth = require("../middleware/authorization");
+import verify from "../middleware/authorization.js";
 
-const editTodoCont = require("../controller/editTodoController");
+import editTodoController from "../controller/editTodoController.js";
 
-module.exports = (app) => {
-  app.patch("/todoList/:id", editTodoAuth.verify, editTodoCont.editTodo);
+const editTodo = (app) => {
+  app.patch("/todoList/:id", verify, editTodoController);
 };
+
+export default editTodo;

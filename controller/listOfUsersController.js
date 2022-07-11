@@ -1,6 +1,6 @@
-const getUsers = require("../Model/signUpModel").User;
+import getUsers from "../Model/signUpModel.js";
 
-exports.sendUsers = (request, response) => {
+const sendUsers = (request, response) => {
   request.role = "user";
   getUsers
     .findAll({
@@ -12,3 +12,5 @@ exports.sendUsers = (request, response) => {
       response.json({ data: data });
     });
 };
+
+export default sendUsers;

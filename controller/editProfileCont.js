@@ -1,8 +1,8 @@
-const users = require("../Model/signUpModel").User;
+import users from "../Model/signUpModel.js";
 
-const joi = require("joi");
+import joi from "joi";
 
-exports.profileEdited = async (request, response) => {
+const profileEdited = async (request, response) => {
   const { firstName, lastName, email } = request.body;
   const usr = {
     firstName,
@@ -11,8 +11,8 @@ exports.profileEdited = async (request, response) => {
   };
 
   const schema = joi.object({
-    firstName: joi.string().min(6).max(30),
-    lastName: joi.string().alphanum().min(6).max(30),
+    firstName: joi.string().min(4).max(30),
+    lastName: joi.string().alphanum().min(4).max(30),
     email: joi
       .string()
       .min(10)
@@ -33,3 +33,4 @@ exports.profileEdited = async (request, response) => {
     response.send(err.details[0].message);
   }
 };
+export default profileEdited;

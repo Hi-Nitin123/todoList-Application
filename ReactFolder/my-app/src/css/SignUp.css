@@ -1,0 +1,27 @@
+#signUpForm{
+    margin: 100px;
+    border: 2px solid black;
+    height: 377px;
+    width: 486px;
+}
+
+    
+#form{
+    padding: 88px;
+    padding-left: 52px;
+    text-align:right
+}
+
+.input{
+    padding-left: 7px;
+    height: 5%;
+    width: 50%;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.label{
+    padding-left: 10px;
+    align-items:stretch
+   
+}

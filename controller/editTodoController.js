@@ -1,7 +1,8 @@
-const myTodoList = require("../Model/myTodoList").myTodoList;
+import myTodoList from "../Model/myTodoList.js";
 
-exports.editTodo = (request, response) => {
-  const { Op } = require("sequelize");
+import { Op } from "sequelize";
+
+const editTodoController = (request, response) => {
   myTodoList
     .findOne({
       where: {
@@ -25,3 +26,5 @@ exports.editTodo = (request, response) => {
         .json({ message: "You are not authorized to edit this todo list" });
     });
 };
+
+export default editTodoController;

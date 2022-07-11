@@ -1,15 +1,14 @@
-const userLogin = require("../Model/signUpModel").User;
+import userLogin from "../Model/signUpModel.js";
 
 console.log("userLogin:", userLogin);
 
-const bcrypt = require("bcrypt");
-const { redirect } = require("express/lib/response");
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 
-const jwt = require("jsonwebtoken");
+dotenv.config();
 
-require("dotenv").config();
-
-exports.loginUser = async (req, res) => {
+const loginUser = async (req, res) => {
   const foundUser = await userLogin.findOne({
     where: { email: req.body.email },
   });
@@ -40,3 +39,5 @@ exports.loginUser = async (req, res) => {
     res.status(404).json({ error: "User does not exist" });
   }
 };
+
+export default loginUser;

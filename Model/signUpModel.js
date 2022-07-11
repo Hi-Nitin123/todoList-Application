@@ -1,7 +1,7 @@
-const { sequelize, DataTypes } = require("./db");
+import { sequelize } from "./db.js";
+import { DataTypes } from "sequelize";
 
-const joi = require("joi");
-exports.User = sequelize.define("User", {
+const User = sequelize.define("User", {
   Id: {
     allowNull: false,
     autoIncrement: true,
@@ -20,6 +20,7 @@ exports.User = sequelize.define("User", {
   role: {
     type: DataTypes.STRING,
     defaultValue: "user",
+    enum: ["user", "role"],
   },
   rights: {
     type: DataTypes.STRING,
@@ -36,3 +37,5 @@ sequelize
   .catch((err) => {
     console.log(`error is ${err}`);
   });
+
+export default User;

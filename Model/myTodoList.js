@@ -1,7 +1,5 @@
-const { sequelize, DataTypes } = require("./db");
-
-const User = require("./signUpModel");
-const joi = require("joi");
+import { sequelize } from "./db.js";
+import { DataTypes } from "sequelize";
 
 const myTodoList = sequelize.define("myTodoList", {
   id: {
@@ -36,4 +34,4 @@ sequelize
     console.log(`error is ${err}`);
   });
 
-module.exports = { myTodoList };
+export default myTodoList;

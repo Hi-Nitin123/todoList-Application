@@ -1,7 +1,8 @@
-const blockUsers = require("../middleware/authorization");
+import verify from "../middleware/authorization.js";
 
-const blockUsersController = require("../controller/rightsCont");
+import blockUser from "../controller/rightsCont.js";
 
-module.exports = (app) => {
-  app.patch("/admin/:Id", blockUsers.verify, blockUsersController.blockUser);
+const adminCanBlockUser = (app) => {
+  app.patch("/admin/:Id", verify, blockUser);
 };
+export default adminCanBlockUser;

@@ -1,11 +1,14 @@
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 
-require("dotenv").config();
+import dotenv from "dotenv";
 
-exports.verify = async (req, res, next) => {
+dotenv.config();
+
+const verify = async (req, res, next) => {
   let data = req.headers.authorization;
+  console.log(data);
   if (data === undefined) {
-    res.send("Please provide a token");
+    res.status(401).json({ message: "Please provide a token" });
   }
   let token = data.split(" ")[1];
   console.log(token);
@@ -16,9 +19,9 @@ exports.verify = async (req, res, next) => {
   }
   jwt.verify(token, process.env.secret_key, (err, decoded) => {
     if (err) {
-      return res.status(401).send({
-        message: "Unauthorized!",
-      });
+      return res
+        .status(403)
+        .json({ message: "You are not authrized to take this action" });
     }
     console.log("decoded", decoded);
 
@@ -29,3 +32,5 @@ exports.verify = async (req, res, next) => {
     next();
   });
 };
+
+export default verify;

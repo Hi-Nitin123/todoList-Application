@@ -1,11 +1,8 @@
-const editProfile = require("../middleware/authorization");
+import verify from "../middleware/authorization.js";
+import profileEdited from "../controller/editProfileCont.js";
 
-const editProfileController = require("../controller/editProfileCont");
-
-module.exports = (app) => {
-  app.patch(
-    "/user/:Id",
-    editProfile.verify,
-    editProfileController.profileEdited
-  );
+const editProfile = (app) => {
+  app.patch("/user/:Id", verify, profileEdited);
 };
+
+export default editProfile;

@@ -1,6 +1,6 @@
-const myTodoList = require("../Model/myTodoList").myTodoList;
+import myTodoList from "../Model/myTodoList.js";
 
-exports.sendProfile = async (request, response) => {
+const sendProfile = async (request, response) => {
   myTodoList
     .findAll({
       where: {
@@ -12,3 +12,5 @@ exports.sendProfile = async (request, response) => {
     })
     .catch((err) => console.log(err));
 };
+
+export default sendProfile;

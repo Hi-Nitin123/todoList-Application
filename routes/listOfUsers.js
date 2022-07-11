@@ -1,5 +1,7 @@
-const showUsers = require("../controller/listOfUsersController");
+import sendUsers from "../controller/listOfUsersController.js";
 
-module.exports = (app) => {
-  app.get("/showUsers", showUsers.sendUsers);
+const showUsersRoute = (app) => {
+  app.get("/showUsers", sendUsers);
 };
+
+export default showUsersRoute;

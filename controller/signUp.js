@@ -1,8 +1,7 @@
-const User = require("../Model/signUpModel.js").User;
+import User from "../Model/signUpModel.js";
+import joi from "joi";
 
-const joi = require("joi");
-
-const bcrypt = require("bcrypt");
+import bcrypt from "bcrypt";
 
 const userRegister = async (request, response) => {
   const { firstName, lastName, email, password, confirmPassword } =
@@ -36,15 +35,15 @@ const userRegister = async (request, response) => {
     });
 
     if (exist === null) {
-      const hashedPassword = bcrypt.hash(password, 10, async (err, hash) => {
-        created_user = await User.create({
+      const createdUser = bcrypt.hash(password, 10, async (err, hash) => {
+        await User.create({
           firstName,
           lastName,
           email,
           password: hash,
         });
 
-        response.status(201).json(created_user);
+        response.status(201).send("user created successfully");
       });
     } else {
       response.send("This user already exists");
@@ -54,4 +53,4 @@ const userRegister = async (request, response) => {
   }
 };
 
-module.exports = userRegister;
+export default userRegister;
