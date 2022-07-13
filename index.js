@@ -6,10 +6,9 @@ import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
 
 const app = express();
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-import path from "path";
-import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 
