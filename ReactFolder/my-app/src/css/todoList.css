@@ -1,0 +1,38 @@
+#input{
+    height: 42px;
+    width: 87%;
+    font-size: xx-large;
+    margin-top: 3%;
+    background-color: beige;
+}
+
+#button{
+    height: 42px;
+    width: 124px;
+    font-size: x-large;
+    height: 45;
+    width: 126;
+    margin-left: 1px;
+    margin-top: 3%;
+    background-color: yellow;
+}
+
+#ol{
+    font-size: x-large;
+    background-color: lightgrey;
+   
+}
+
+.cross{
+    height: 21px;
+    width: 25px;
+    background-color: #FA6900;
+    border-radius: 5px;
+    position: absolute;
+    left: 98%;
+    text-align: end;
+    justify-content: end;
+}
+    
+
+
