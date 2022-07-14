@@ -8,7 +8,7 @@ const verify = async (req, res, next) => {
   let data = req.headers.authorization;
   console.log(data);
   if (data === undefined) {
-    res.status(401).json({ message: "Please provide a token" });
+    res.status(403).json({ message: "Please provide a token" });
   }
   let token = data.split(" ")[1];
   console.log(token);

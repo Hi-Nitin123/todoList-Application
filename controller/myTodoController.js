@@ -9,13 +9,11 @@ User.hasMany(myTodoList);
 const entertodoList = async (request, response) => {
   const todoItem = {
     todoListName: request.body.todoListName,
-    description: request.body.description,
     UserId: request.Id,
   };
 
   const schema = joi.object({
     todoListName: joi.string().min(3).max(50).required(),
-    description: joi.string().required(),
     UserId: joi.number().required(),
   });
   try {

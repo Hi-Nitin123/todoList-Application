@@ -11,7 +11,7 @@ function Login() {
     axios
       .post("http://localhost:8000/login", { email, password })
       .then((res) => {
-        console.log("user logged in successfully");
+        localStorage.setItem("token", res.data.token);
       })
       .catch((err) => {
         console.log(err);

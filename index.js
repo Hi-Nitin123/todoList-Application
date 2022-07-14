@@ -67,6 +67,6 @@ db.sequelize
   .catch((err) => {
     console.log(err);
   });
-app.listen(8000, function () {
-  console.log("This is running on the port 8000!");
+app.listen(8000, () => {
+  console.log("this app is listening to the port 8000");
 });

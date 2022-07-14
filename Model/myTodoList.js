@@ -10,10 +10,6 @@ const myTodoList = sequelize.define("myTodoList", {
   },
   todoListName: { allowNull: false, type: DataTypes.STRING },
 
-  description: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
   status: {
     type: DataTypes.STRING,
     enum: ["pending", "done", "ongoing"],
