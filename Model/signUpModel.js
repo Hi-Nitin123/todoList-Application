@@ -24,8 +24,8 @@ const User = sequelize.define("User", {
   },
   rights: {
     type: DataTypes.STRING,
-    defaultValue: "unblocked",
-    enum: ["blocked", "unblocked"],
+    defaultValue: "Block",
+    enum: ["block", "Unblock"],
   },
 });
 
