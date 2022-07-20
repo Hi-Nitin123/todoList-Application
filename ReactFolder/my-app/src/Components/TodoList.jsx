@@ -82,9 +82,23 @@ function TodoList() {
     await getData();
   };
 
-  const handleColor = (key) => {
-    const listColor = { state: !isActive.state, id: key };
-    setActive(listColor);
+  const handleColor = async (value, id) => {
+    console.log(id);
+    let status = value === "pending" ? "done" : "pending";
+    await axios
+      .patch(
+        `http://localhost:8000/todoList/${id}`,
+        { status },
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+
+    await getData();
   };
 
   return (
