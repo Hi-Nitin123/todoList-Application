@@ -1,24 +1,53 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../css/todoList.css";
-import { v4 as uuid4 } from "uuid";
 import axios from "axios";
-console.log("Your token", localStorage.getItem("token"));
+
 
 function TodoList() {
   const [myItem, setItem] = useState("");
   const [list, setList] = useState([]);
-  const [isActive, setActive] = useState({
-    state: false,
-    id: "",
-  });
 
-  const handleAddItem = () => {
-    const item = { item: myItem, id: uuid4() };
-    const todoListName = item.item;
-    console.log(todoListName);
-    let newList = list;
-    newList = newList.concat(item);
+  useEffect(() => {
+    axios
+      .get(
+        "http://localhost:8000/mytodoList",
+
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      )
+      .then((res) => {
+        let newList = res.data.data;
+
     setList(newList);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const getData = async () => {
+    await axios
+      .get(
+        "http://localhost:8000/mytodoList",
+
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      )
+      .then((res) => {
+        setList(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleAddItem = async () => {
+
+
+    let todoListName = myItem;
+
     axios
       .post(
         "http://localhost:8000/todoList",
@@ -27,18 +56,30 @@ function TodoList() {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
       )
-      .then((res) => console.log("response", res.data))
+      .then((res) => {
+        console.log(res);
+      })
       .catch((err) => {
         console.log(err);
       });
+    await getData();
     setItem("");
-  };
-  const deleteHandler = (key) => {
-    const newList = list.filter((value) => {
-      return key !== value.id;
-    });
 
-    setList(newList);
+    
+  };
+  const deleteHandler = async (id) => {
+   
+    await axios
+      .delete(`http://localhost:8000/todoList/${id}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      })
+      .then((res) => {
+        console.log("falana res", res);
+      })
+      .catch((err) => {
+        console.log(err);
+    });
+    await getData();
   };
 
   const handleColor = (key) => {
