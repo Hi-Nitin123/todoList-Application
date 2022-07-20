@@ -20,7 +20,7 @@ const loginUser = async (req, res) => {
     );
 
     if (password_valid) {
-      if (foundUser.rights === "blocked") {
+      if (foundUser.rights === "Unblock") {
         res.status(401).json({ messsage: "You are blocked" });
       }
       const token = jwt.sign(
@@ -28,10 +28,14 @@ const loginUser = async (req, res) => {
           Id: foundUser.Id,
         },
         process.env.secret_key,
-        { expiresIn: "2h" }
+        { expiresIn: "4h" }
       );
 
-      res.status(200).json({ token: token });
+      res.status(200).json({
+        token: token,
+        access: foundUser.rights,
+        myRole: foundUser.role,
+      });
     } else {
       res.status(400).json({ error: "Password Incorrect" });
     }

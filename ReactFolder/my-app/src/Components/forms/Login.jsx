@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "../../css/login.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -11,7 +13,17 @@ function Login() {
     axios
       .post("http://localhost:8000/login", { email, password })
       .then((res) => {
-        localStorage.setItem("token", res.data.token);
+        console.log(res);
+        if (res.data.access === "Block") {
+          if (res.data.myRole === "admin") {
+            localStorage.setItem("token", res.data.token);
+            navigate("/admin");
+          } else {
+            localStorage.setItem("token", res.data.token);
+            navigate("/MyTodoList");
+          }
+        } else {
+        }
       })
       .catch((err) => {
         console.log(err);

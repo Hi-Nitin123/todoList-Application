@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../css/todoList.css";
-// import { v4 as uuid4 } from "uuid";
 import axios from "axios";
-// import res from "express/lib/response";
 
 function TodoList() {
   const [myItem, setItem] = useState("");
@@ -45,13 +43,6 @@ function TodoList() {
   };
 
   const handleAddItem = async () => {
-    // const item = { item: myItem, id: uuid4() };
-    // let todoListName = item.item;
-    // console.log(todoListName);
-    // let newList = list;
-    // newList = newList.concat(item);
-    // setList(newList);
-
     let todoListName = myItem;
 
     axios
@@ -70,26 +61,8 @@ function TodoList() {
       });
     await getData();
     setItem("");
-
-    // axios
-    //   .get(
-    //     "http://localhost:8000/mytodoList",
-
-    //     {
-    //       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-    //     }
-    //   )
-    //   .then((res) => {
-    //     let coloredList = res.data.data;
-
-    //     coloredList.map((val)e = item.item;
-    //   });
   };
   const deleteHandler = async (id) => {
-    // const newList = list.filter((value) => {
-    //   return value.id !== id;
-    // });
-    // console.log("id", id);
     await axios
       .delete(`http://localhost:8000/todoList/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
