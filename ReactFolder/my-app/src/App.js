@@ -1,7 +1,7 @@
 import "./App.css";
-import ListOfUsers from "./Components/ListOfUsers";
+// import ListOfUsers from "./Components/ListOfUsers";
 // import Login from "./Components/forms/Login";
-// import TodoList from "./Components/TodoList";
+import TodoList from "./Components/TodoList";
 // import TodoList from "./Components/TodoList";
 // import SignUp from "./Components/forms/SignUp";
 
@@ -10,8 +10,8 @@ function App() {
     <div className="App">
       {/* <SignUp /> */}
       {/* <Login /> */}
-      {/* <TodoList /> */}
-      <ListOfUsers />
+      <TodoList />
+      {/* <ListOfUsers /> */}
     </div>
   );
 }

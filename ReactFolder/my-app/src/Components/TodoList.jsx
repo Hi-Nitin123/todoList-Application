@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "../css/todoList.css";
+// import { v4 as uuid4 } from "uuid";
 import axios from "axios";
-
+// import res from "express/lib/response";
 
 function TodoList() {
   const [myItem, setItem] = useState("");
@@ -19,7 +20,7 @@ function TodoList() {
       .then((res) => {
         let newList = res.data.data;
 
-    setList(newList);
+        setList(newList);
       })
       .catch((err) => {
         console.log(err);
@@ -44,7 +45,12 @@ function TodoList() {
   };
 
   const handleAddItem = async () => {
-
+    // const item = { item: myItem, id: uuid4() };
+    // let todoListName = item.item;
+    // console.log(todoListName);
+    // let newList = list;
+    // newList = newList.concat(item);
+    // setList(newList);
 
     let todoListName = myItem;
 
@@ -65,10 +71,25 @@ function TodoList() {
     await getData();
     setItem("");
 
-    
+    // axios
+    //   .get(
+    //     "http://localhost:8000/mytodoList",
+
+    //     {
+    //       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    //     }
+    //   )
+    //   .then((res) => {
+    //     let coloredList = res.data.data;
+
+    //     coloredList.map((val)e = item.item;
+    //   });
   };
   const deleteHandler = async (id) => {
-   
+    // const newList = list.filter((value) => {
+    //   return value.id !== id;
+    // });
+    // console.log("id", id);
     await axios
       .delete(`http://localhost:8000/todoList/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -78,7 +99,7 @@ function TodoList() {
       })
       .catch((err) => {
         console.log(err);
-    });
+      });
     await getData();
   };
 
@@ -112,31 +133,32 @@ function TodoList() {
             setItem(e.target.value);
           }}
         />
-        <button id="button" onClick={handleAddItem}>
+        <button
+          id="button"
+          onClick={() => {
+            handleAddItem();
+          }}
+        >
           <b>Add item</b>
         </button>
       </div>
 
       <ol id="ol">
-        {list.map((val) => {
+        {list.map((value) => {
           return (
-            <li
-              key={val.id}
-              onClick={() => handleColor(val.id)}
-              style={{
-                backgroundColor:
-                  isActive.id === val.id && isActive.state
-                    ? "green"
-                    : "lightGrey",
-              }}
-            >
-              {val.item}
-              <span id="span">
-                <button className="cross" onClick={() => deleteHandler(val.id)}>
-                  x
-                </button>
-              </span>
-            </li>
+            <>
+              <li
+                className={`${value.status === "pending" ? "pending" : "done"}`}
+                key={value.id}
+                onClick={() => handleColor(value.status, value.id)}
+              >
+                {value.todoListName}
+              </li>
+
+              <button className="cross" onClick={() => deleteHandler(value.id)}>
+                x
+              </button>
+            </>
           );
         })}
       </ol>

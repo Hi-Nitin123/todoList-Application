@@ -33,6 +33,20 @@
     text-align: end;
     justify-content: end;
 }
+
+.pending{
+    background-color: lightgray;
+}
+.done{
+    background-color: green;
+}
+
+
+.cross{
+
+    margin-top: -2%;
     
+    
+}
 
 

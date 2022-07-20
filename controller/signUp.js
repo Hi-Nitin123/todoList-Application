@@ -6,6 +6,7 @@ import bcrypt from "bcrypt";
 const userRegister = async (request, response) => {
   const { firstName, lastName, email, password, confirmPassword } =
     request.body;
+
   const usr = {
     firstName,
     lastName,
