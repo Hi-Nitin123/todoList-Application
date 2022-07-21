@@ -53,6 +53,11 @@ function ListOfUsers() {
   }, []);
   return (
     <div>
+      <h1>
+        <center>Hello Admin!!</center>
+        <br />
+        <p>Here are the list of users that you can block or unblock</p>
+      </h1>
       <table id="adminTable">
         <tbody>
           <tr>

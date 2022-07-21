@@ -2,7 +2,7 @@ import "./App.css";
 
 import Login from "./Components/forms/Login";
 
-// import SignUp from "./Components/forms/SignUp";
+import SignUp from "./Components/forms/SignUp";
 import { Routes, Route } from "react-router-dom";
 import TodoList from "./Components/TodoList";
 import ListOfUsers from "./Components/ListOfUsers";
@@ -17,7 +17,9 @@ function App() {
         <Route exact path="/" element={<Login />} />
         <Route path="/MyTodoList" element={<TodoList />} />
         <Route path="/admin" element={<ListOfUsers />} />
+        <Route path="/register" element={<SignUp />} />
         <Route element={<Error />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
 
       {/* <TodoList /> */}
