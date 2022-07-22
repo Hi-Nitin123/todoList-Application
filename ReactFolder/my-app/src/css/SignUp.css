@@ -66,3 +66,8 @@
     margin-right: 118px;
 
 }
+
+.text-danger{
+    color: red;
+    font-size: 6px;
+}
