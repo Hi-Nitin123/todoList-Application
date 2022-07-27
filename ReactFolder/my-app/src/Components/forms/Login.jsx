@@ -44,7 +44,8 @@ function Login() {
         }
       })
       .catch((err) => {
-        console.log(err);
+        alert(`${err.response.data.error}`);
+        console.log(err.response.data.error);
       });
   };
 
@@ -54,12 +55,11 @@ function Login() {
         return { ...pre, emaileError: "this is a required field" };
       });
     } else {
-      if (!validator.isEmail) {
+      if (!validator.isEmail(email)) {
         setErrors((pre) => {
           return { ...pre, emaileError: "This is not a valid email" };
         });
       } else {
-        errors.emaileError = "";
         setErrors((pre) => {
           return { ...pre, emaileError: "" };
         });
