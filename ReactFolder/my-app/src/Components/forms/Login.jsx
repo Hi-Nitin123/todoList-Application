@@ -3,11 +3,24 @@ import "../../css/login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../css/SignUp.css";
+// import { useForm } from "react-hook-form";
+import validator from "validator";
 
 function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({ emaileError: "", passwordError: "" });
+  const [checked, setChecked] = useState({
+    emailChecked: false,
+    passwordChecked: false,
+  });
+
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm({ mode: "onSubmit" });
 
   const handleSignUp = () => {
     navigate("/register");
@@ -31,8 +44,46 @@ function Login() {
         }
       })
       .catch((err) => {
-        console.log(err);
+        alert(`User does not exist`);
       });
+  };
+
+  const handleEmailError = () => {
+    if (validator.isEmpty(email)) {
+      setErrors((pre) => {
+        return { ...pre, emaileError: "this is a required field" };
+      });
+    } else {
+      if (!validator.isEmail) {
+        setErrors((pre) => {
+          return { ...pre, emaileError: "This is not a valid email" };
+        });
+      } else {
+        errors.emaileError = "";
+        setErrors((pre) => {
+          return { ...pre, emaileError: "" };
+        });
+        setChecked((pre) => {
+          return { ...pre, emailChecked: true };
+        });
+      }
+    }
+  };
+
+  const handlePasswordError = () => {
+    if (validator.isEmpty(password)) {
+      setErrors((pre) => {
+        return { ...pre, passwordError: "this is a required field" };
+      });
+    } else {
+      setErrors((pre) => {
+        return { ...pre, passwordError: "" };
+      });
+
+      setChecked((pre) => {
+        return { ...pre, passwordChecked: true };
+      });
+    }
   };
   return (
     <div style={{ height: "100%" }}>
@@ -45,12 +96,29 @@ function Login() {
             <input
               type="text"
               className="input"
+              name="email"
+              onBlur={() => {
+                handleEmailError();
+              }}
+              // {...register("email", {
+              //   required: "Email is required",
+
+              //   minLength: {
+              //     value: 10,
+              //     message: "Your email name should have atleat 10 characters",
+              //   },
+              //   pattern: {
+              //     value: "^[a-zA-Z0-9]{3,30}$",
+              //     message: "this email is not valid",
+              //   },
+              // })}
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
             />
             <br />
+            <small className="text-danger">{errors.emaileError}</small>
             <br />
 
             <label
@@ -66,21 +134,45 @@ function Login() {
               type="password"
               className="input"
               value={password}
+              name="pswd"
+              onBlur={() => handlePasswordError()}
+              // {...register("pswd", {
+              //   required: "Password is required",
+              //   minLength: {
+              //     value: 8,
+              //     message: "Your password name should have atleat 8 characters",
+              //   },
+              // })} onClick={(e) => {
+
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
             />
             <br />
+            <small className="text-danger">{errors.passwordError}</small>
             <br />
           </div>
 
-          <button type="button" id="loginBtn" onClick={loginHandle}>
+          <button
+            type="button"
+            id="loginBtn"
+            onClick={(e) => {
+              checked.emailChecked && checked.passwordChecked
+                ? loginHandle(e)
+                : alert(`Please fill all the details properly before proceed`);
+            }}
+          >
             Login
           </button>
           <br />
           <br />
           <label htmlFor="signUp">Not registered yet?</label>
-          <button onClick={handleSignUp} id="notRegistered">
+          <button
+            onClick={() => {
+              handleSignUp();
+            }}
+            id="notRegistered"
+          >
             Sign up
           </button>
         </form>
