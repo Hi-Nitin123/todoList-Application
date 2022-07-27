@@ -31,7 +31,6 @@ function Login() {
     axios
       .post("http://localhost:8000/login", { email, password })
       .then((res) => {
-        console.log(res);
         if (res.data.access === "Block") {
           if (res.data.myRole === "admin") {
             localStorage.setItem("token", res.data.token);
@@ -41,10 +40,11 @@ function Login() {
             navigate("/MyTodoList");
           }
         } else {
+          navigate("/blocked");
         }
       })
       .catch((err) => {
-        alert(`${err.response.data.error}`);
+        console.log(err);
       });
   };
 
