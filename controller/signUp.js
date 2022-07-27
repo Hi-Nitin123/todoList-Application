@@ -16,8 +16,8 @@ const userRegister = async (request, response) => {
   };
 
   const schema = joi.object({
-    firstName: joi.string().min(3).max(30).required(),
-    lastName: joi.string().alphanum().min(3).max(30).required(),
+    firstName: joi.string().required(),
+    lastName: joi.string().required(),
     email: joi
       .string()
       .min(10)

@@ -69,5 +69,10 @@
 
 .text-danger{
     color: red;
-    font-size: 6px;
+    font-size: 13px;
+    height: 9px;
+    width: 190px;
+    position: absolute;
+    text-align: start;
+    margin-left: -346px;
 }
