@@ -44,7 +44,7 @@ function Login() {
         }
       })
       .catch((err) => {
-        alert(`User does not exist`);
+        alert(`${err.response.data.error}`);
       });
   };
 
